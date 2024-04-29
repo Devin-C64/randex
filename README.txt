@@ -75,3 +75,24 @@ change in the future:
 To build: change in to directory src/edu/udel/cisc675/randex and type
 "make".  Type "make test1" to run a test.  See the Makefile for
 further details.
+
+Critique of Design v1:
+
+To start, the thing that is most apparent to me is the execute functio
+in Randex.java. It is doing way too much and thus should be separated into
+its own component. 
+
+Also, output never changes in randex after it is created so it should be
+made immutable.
+
+Furthermore, the classes FindAnswers AND FindProblems both use a match
+function that while different in structure do the same thing.
+
+Design v2:
+
+1: PatternMatcher.Java
+This module is used by FindAnswers.java and FindProblems.java and its
+only secret is the list chars. Its purpose is to tells whether the sequence 
+in array chars matches those of c. Its only export is the match function.
+
+2: 

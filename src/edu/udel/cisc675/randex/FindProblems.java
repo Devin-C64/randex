@@ -35,15 +35,7 @@ public class FindProblems {
 	this.chars = chars;
     }
 
-    /* Determines whether the sequence of characters in chars starting
-       at offset off matches the chars of sought. */
-    private static boolean match(char[] chars, int off, char[] sought) {
-	for (int i=0; i<sought.length; i++) {
-	    if (off+i >= chars.length || sought[i] != chars[off+i])
-		return false;
-	}
-	return true;
-    }
+	private PatternMatcher = new PatternMatcher(chars)
 
     /* Constructs probStarts and probStops. */
     public void execute() {
@@ -52,13 +44,13 @@ public class FindProblems {
 	int n = chars.length;
 	boolean inProblem = false; // is i currently inside a problem?
 	for (int i=0; i<n; i++) {
-	    if (match(chars, i, beginProblem)) {
+	    if (PatternMatcher.match(i, beginProblem)) {
 		if (inProblem)
 		    throw new RuntimeException
 			("Encountered \\begin{problem} when inside a problem");
 		startList.add(i);
 		inProblem = true;
-	    } else if (match(chars, i, endProblem)) {
+	    } else if (PatternMatcher.match(i, endProblem)) {
 		if (!inProblem)
 		    throw new RuntimeException
 			("Encountered \\end{problem} when outside any problem");
