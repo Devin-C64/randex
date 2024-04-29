@@ -35,7 +35,7 @@ public class FindProblems {
 	this.chars = chars;
     }
 
-	private PatternMatcher = new PatternMatcher(chars)
+	PatternMatcher patternMatcher = new PatternMatcher(chars);
 
     /* Constructs probStarts and probStops. */
     public void execute() {
@@ -44,13 +44,13 @@ public class FindProblems {
 	int n = chars.length;
 	boolean inProblem = false; // is i currently inside a problem?
 	for (int i=0; i<n; i++) {
-	    if (PatternMatcher.match(i, beginProblem)) {
+	    if (patternMatcher.match(i, beginProblem)) {
 		if (inProblem)
 		    throw new RuntimeException
 			("Encountered \\begin{problem} when inside a problem");
 		startList.add(i);
 		inProblem = true;
-	    } else if (PatternMatcher.match(i, endProblem)) {
+	    } else if (patternMatcher.match(i, endProblem)) {
 		if (!inProblem)
 		    throw new RuntimeException
 			("Encountered \\end{problem} when outside any problem");

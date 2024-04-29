@@ -47,7 +47,7 @@ public class FindAnswers {
 	this.probStops = probStops;
     }
 
-	private PatternMatcher = new PatternMatcher(chars)
+	PatternMatcher patternMatcher = new PatternMatcher(chars);
 
     /* Converts an array list of Integer to an array of int. */
     private static int[] toArray(ArrayList<Integer> list) {
@@ -65,16 +65,16 @@ public class FindAnswers {
 	    stopList = new ArrayList<>();
 	int i = probStarts[pid]; // starting character index for problem pid
 	int stop = probStops[pid];
-	for (; i < stop && !PatternMatcher.match(i, beginEnumerate); i++) ;
+	for (; i < stop && !patternMatcher.match(i, beginEnumerate); i++) ;
 	if (i == stop)
 	    throw new RuntimeException
 		("No \\begin{enumerate} found for problem "+pid);
 	for (; i < stop; i++) {
-	    if (PatternMatcher.match(i, endEnumerate)) {
+	    if (patternMatcher.match(i, endEnumerate)) {
 		if (!startList.isEmpty()) stopList.add(i);
 		break;
 	    }
-	    if (PatternMatcher.match(i, item)) {
+	    if (patternMatcher.match(i, item)) {
 		if (!startList.isEmpty()) stopList.add(i);
 		startList.add(i);
 	    }

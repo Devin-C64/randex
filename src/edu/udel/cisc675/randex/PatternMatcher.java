@@ -1,7 +1,7 @@
 package edu.udel.cisc675.randex;
 
 public class PatternMatcher {
-    private char[] chars;
+    private final char[] chars;
 
     public PatternMatcher(char[] chars) {
         this.chars = chars;

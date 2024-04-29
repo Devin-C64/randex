@@ -28,10 +28,10 @@ public class RandomizeAnswers{
        answerPerms[pid][*]. */
     private void randomizeProblem(int pid) {
 	int nanswer = numAnswers[pid];
-	Randomizer randomizer = new Randomizer()
+	Randomizer randomizer = new Randomizer(rand);
 	for (int i=0; i<nanswer; i++)
 	    answerPerms[pid][i] = i;
-		randomizer.randomize(answerPerms[pid])
+		randomizer.randomize(answerPerms[pid]);
 
     }
 

@@ -88,6 +88,11 @@ made immutable.
 Furthermore, the classes FindAnswers AND FindProblems both use a match
 function that while different in structure do the same thing.
 
+Ultimately, the initial version would benefit greatly from breaking up
+each module into smaller modules since it would aid in readabiliy and it
+would allow the reader to better understand how modules are used by other
+modules.
+
 Design v2:
 
 1: PatternMatcher.Java

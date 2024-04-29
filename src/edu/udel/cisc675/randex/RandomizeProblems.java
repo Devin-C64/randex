@@ -30,7 +30,7 @@ public class RandomizeProblems {
 	for (int i=0; i<nprob; i++)
 	    probPerm[i] = i;
 
-	Randomizer randomizer = new Randomizer();
+	Randomizer randomizer = new Randomizer(rand);
     randomizer.randomize(probPerm);
 	//System.out.println();
     }
