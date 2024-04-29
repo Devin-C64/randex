@@ -29,16 +29,9 @@ public class RandomizeProblems {
 	this.probPerm = new int[nprob];
 	for (int i=0; i<nprob; i++)
 	    probPerm[i] = i;
-	//System.out.print("rands = ");
-	for (int i=nprob-1; i>=0; i--) {
-	    int j = rand.nextInt(i+1);
-	    //System.out.print(" "+j);
-	    if (i!=j) {
-		int t = probPerm[i];
-		probPerm[i] = probPerm[j];
-		probPerm[j] = t;
-	    }
-	}
+
+	Randomizer randomizer = new Randomizer();
+    randomizer.randomize(probPerm);
 	//System.out.println();
     }
 }

@@ -95,4 +95,18 @@ This module is used by FindAnswers.java and FindProblems.java and its
 only secret is the list chars. Its purpose is to tells whether the sequence 
 in array chars matches those of c. Its only export is the match function.
 
-2: 
+2: Randomizer.Java
+This module is used by RandomizeAnswers.java and RandomizeProbelms.java.
+Its main purpose is to reduce the amount of times that randomize happens since
+before I changed it it happened in both java files. Also it cuts back on the amount
+of calls to the rand object which saves on space and time. Its main export is the
+randomize function.
+
+
+Anticipation of Change:
+
+1:
+
+2:
+
+3:

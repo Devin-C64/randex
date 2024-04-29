@@ -5,7 +5,7 @@ import java.util.random.RandomGenerator;
    permutation of 0..m-1, where m is the number of answers to problem
    i.  Uses Fisher-Yates algorithm; see See
    https://en.wikipedia.org/wiki/Fisher–Yates_shuffle. */
-public class RandomizeAnswers {
+public class RandomizeAnswers{
 
     /* For each i in 0..numProblems - 1, the number of answers to
      * problem i (in). */
@@ -28,19 +28,11 @@ public class RandomizeAnswers {
        answerPerms[pid][*]. */
     private void randomizeProblem(int pid) {
 	int nanswer = numAnswers[pid];
+	Randomizer randomizer = new Randomizer()
 	for (int i=0; i<nanswer; i++)
 	    answerPerms[pid][i] = i;
-	//System.out.print("rands = ");
-	for (int i=nanswer-1; i>=0; i--) {
-	    int j = rand.nextInt(i+1);
-	    //System.out.print(" "+j);
-	    if (i!=j) {
-		int t = answerPerms[pid][i];
-		answerPerms[pid][i] = answerPerms[pid][j];
-		answerPerms[pid][j] = t;
-	    }
-	}
-	//System.out.println();
+		randomizer.randomize(answerPerms[pid])
+
     }
 
     /* Constructs random permutations for each problem */
