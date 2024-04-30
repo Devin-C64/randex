@@ -1,5 +1,4 @@
 package edu.udel.cisc675.randex;
-import java.util.ArrayList;
 
 /* Module FindAnswers: searches through the character array from the file,
    and for each problem, finds the starting and ending points of each answer.
@@ -47,52 +46,13 @@ public class FindAnswers {
 	this.probStops = probStops;
     }
 
-    /* Converts an array list of Integer to an array of int. */
-    private static int[] toArray(ArrayList<Integer> list) {
-	int n = list.size();
-	int[] result = new int[n];
-	for (int i=0; i<n; i++)
-	    result[i] = list.get(i);
-	return result;
-    }
-
-    /* Finds the answers to the problem with ID pid, setting
-       answerStarts[pid] and answerStops[pid].  */
-    private void findAnswersInProblem(int pid) {
-	ArrayList<Integer> startList = new ArrayList<>(),
-	    stopList = new ArrayList<>();
-	int i = probStarts[pid]; // starting character index for problem pid
-	int stop = probStops[pid];
-	PatternMatcher patternMatcher = new PatternMatcher(chars);
-	for (; i < stop && !patternMatcher.match(i, beginEnumerate); i++) ;
-	if (i == stop)
-	    throw new RuntimeException
-		("No \\begin{enumerate} found for problem "+pid);
-	for (; i < stop; i++) {
-	    if (patternMatcher.match(i, endEnumerate)) {
-		if (!startList.isEmpty()) stopList.add(i);
-		break;
-	    }
-	    if (patternMatcher.match(i, item)) {
-		if (!startList.isEmpty()) stopList.add(i);
-		startList.add(i);
-	    }
-	}
-	if (i == stop)
-	    throw new RuntimeException
-		("No \\end{enumerate} found for problem "+pid);
-	int nanswer = startList.size();
-	assert nanswer == stopList.size();
-	answerStarts[pid] = toArray(startList);
-	answerStops[pid] = toArray(stopList);
-    }
-
     /* Constructs answerStarts and answerStops. */
     public void execute() {
 	int nprob = probStarts.length;
 	answerStarts = new int[nprob][];
 	answerStops = new int[nprob][];
+	FindAnswersInProblem findAnswersInProblem = new FindAnswersInProblem(chars, probStarts, probStops, answerStarts, answerStops);
 	for (int i=0; i<nprob; i++)
-	    findAnswersInProblem(i);
+	    findAnswersInProblem.findAnswersInProblem(i);
     }
 }

@@ -3,7 +3,7 @@
 # for test2, test3.
 
 SRC = Randex.java Input.java FindProblems.java FindAnswers.java \
-  RandomizeProblems.java RandomizeAnswers.java Output.java PatternMatcher.java Randomizer.java RandexDebug.java
+  RandomizeProblems.java RandomizeAnswers.java Output.java PatternMatcher.java Randomizer.java RandexDebug.java FindAnswersInProblem.java ToArray.java
 CLASSES = $(subst .java,.class,$(SRC))
 CP = ../../../..
 
