@@ -1,3 +1,6 @@
+==============
+Devin Cummings
+==============
 
 		     Randex: The Exam Randomizer
 
@@ -95,9 +98,6 @@ One of the things that is most apparent to me is the execute function
 in Randex.java. It is doing way too much and thus should be separated into
 its own component. 
 
-Also, output never changes in randex after it is created so it should be
-made immutable.
-
 As for the classes that I saw could easily be broken up into smaller components,
 the first two that caught my eye were FindAnswers and FindProblems. The main thing
 that stood out to me was that they both utilized the same match function but written
@@ -109,12 +109,16 @@ which both share a similar randomize function. By taking this out and making it 
 component we could make the incrementation of new functions more intuitive and reduce the
 redundancy of having the function more than once (Parnas 4).
 
-One last oversight that must be addressed is the fact that the program is catered
+One last major oversight that must be addressed is the fact that the program is catered
 exclusively towards latex files. By doing this, the components in this project do
 not have a good degree of applicability, since there are many other forms of text file
 that people could be using to store their exams as (Gamma et. all, 5). 
 
-Generate seed using time.
+To end, there are a couple smaller changes I made. This isn't nearly as important but there 
+were a few possible small human errors such as redefining the variable output in Randex.java's 
+execute function which was unneeded. Additionally, I edited the seed variable in main such that
+it is based off of the current time in milliseconds so that the randomization is much more random
+and thus closer to true randomization.
 
 ----------
 Design v2:
@@ -127,14 +131,15 @@ made this function its own component was that it was already present in FindAnsw
 and FindProblems but written sligtly differently. By doing this, I feel that I have
 streamlined it and made it much easier to understand, as while as cutting back on the
 clutter in the two parent components. Its only export is the match function and its
-only secret is the chars array.
+only secret is the array "chars".
 
 2: Randomizer.java
 This module is used by RandomizeAnswers.java and RandomizeProbelms.java.
 Its main purpose is to reduce the amount of times that randomize happens since
-before I changed it it happened in both java files. Also it cuts back on the amount
-of calls to the rand object which saves on space and time. Its main export is the
-randomize function.
+before I changed it it happened in both java files. Similar to with PatternMatcher.java,
+this helps cut back on the clutter in the components it's used in as well as making
+its own functinality much clearer. Its only export is the randomize function and its only
+secret is the RandomGenerator "rand".
 
 3: DebugRandex.java
 This moduel is intended to be used by Randex.java and its main purpose is to
@@ -145,15 +150,24 @@ debugging functionality could be moved elsewhere. By doing this, I believe it is
 easier to understand how the debugging works and makes Randex more digestible.
 There are no secrets for this component and its exports are both of the print
 functions, one for 1D arrays and one for 2D arrays.
+
 -----------------------
 Anticipation of Change:
 -----------------------
 
 1: Making the program work with non-latex text files
 
-In order to make the program function with text files that aren't of the latex
-type, we would need to create 
+For both versions of the code (v1 and v2), in order to make the program function with text 
+files that aren't of the latex type, we would need to create 
 
-2: 
+2: Combine RandomizeAnswers and RandomizeProblems / combine FindAnswers and combine FindProblems
 
-3:
+For the original version of the code (v1),
+
+For my new version of the code (v2), 
+
+3: Abstract constructor for all components used in Randex.java
+
+For the original version of the code (v1),
+
+For my new version of the code (v2)

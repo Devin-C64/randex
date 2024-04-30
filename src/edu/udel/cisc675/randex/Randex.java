@@ -12,10 +12,10 @@ import java.util.random.RandomGenerator;
 public class Randex {
 
     /* Name of file to read (command line argument 0) */
-    private String filename;
+    private final String filename;
 
     /* Random seed (command line argument 1) */
-    private long seed;
+    private final long seed;
 
     /* Random number generator */
     private RandomGenerator rand;
@@ -57,7 +57,7 @@ public class Randex {
 	    numAnswers[i] = findAnswers.answerStarts[i].length;
 	randomizeAnswers = new RandomizeAnswers(numAnswers, rand);
 	randomizeAnswers.execute();
-	Output output = new Output
+	output = new Output
 	    (out, input.chars, findProblems.probStarts, findProblems.probStops,
 	     findAnswers.answerStarts, findAnswers.answerStops,
 	     randomizeProblems.probPerm,
@@ -74,7 +74,7 @@ public class Randex {
 	    System.exit(1);
 	}
 	String filename = args[0];
-	long seed = Long.decode(args[1]);
+	long seed = System.currentTimeMillis();
 	//System.out.println("Seed = "+seed);
 	Randex randex = new Randex(filename, seed);
 	randex.execute();
