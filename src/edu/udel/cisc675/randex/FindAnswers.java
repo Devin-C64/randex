@@ -47,8 +47,6 @@ public class FindAnswers {
 	this.probStops = probStops;
     }
 
-	PatternMatcher patternMatcher = new PatternMatcher(chars);
-
     /* Converts an array list of Integer to an array of int. */
     private static int[] toArray(ArrayList<Integer> list) {
 	int n = list.size();
@@ -65,6 +63,7 @@ public class FindAnswers {
 	    stopList = new ArrayList<>();
 	int i = probStarts[pid]; // starting character index for problem pid
 	int stop = probStops[pid];
+	PatternMatcher patternMatcher = new PatternMatcher(chars);
 	for (; i < stop && !patternMatcher.match(i, beginEnumerate); i++) ;
 	if (i == stop)
 	    throw new RuntimeException

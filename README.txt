@@ -76,42 +76,84 @@ To build: change in to directory src/edu/udel/cisc675/randex and type
 "make".  Type "make test1" to run a test.  See the Makefile for
 further details.
 
+----------------------
 Critique of Design v1:
+----------------------
 
-To start, the thing that is most apparent to me is the execute functio
+To start, one thing that is very apparent to me is the methods are simply
+too big and incorporate too many methods. According to "Design Software for
+Ease of Extension and Contraction" by David L. Parnas on page 3, one of the most common
+design errors that programers run into is creating components that perform more
+than one function. He goes onto say that separation of these large components into
+smaller ones would allow for components that are easier to use and more widely
+applicable to different circumstances. Another reason it would help to break up 
+some of these larger components is so that it would become quicker for a new programmer 
+to figure out what they do, which is stressed greatly in "Design Patterns: Abstraction 
+and Reuse of Object-Oriented Design" by Erich Gamma et. all on page 11. 
+
+One of the things that is most apparent to me is the execute function
 in Randex.java. It is doing way too much and thus should be separated into
 its own component. 
 
 Also, output never changes in randex after it is created so it should be
 made immutable.
 
-Furthermore, the classes FindAnswers AND FindProblems both use a match
-function that while different in structure do the same thing.
+As for the classes that I saw could easily be broken up into smaller components,
+the first two that caught my eye were FindAnswers and FindProblems. The main thing
+that stood out to me was that they both utilized the same match function but written
+differently in each class. By making the match function it's own class and being shared between 
+the two components, the code would become more efficient and consistent (Gamma et. all).
 
-Ultimately, the initial version would benefit greatly from breaking up
-each module into smaller modules since it would aid in readabiliy and it
-would allow the reader to better understand how modules are used by other
-modules.
+Another such instance is in the components RandomizeAnswers and RandomizeProblems,
+which both share a similar randomize function. By taking this out and making it it's own
+component we could make the incrementation of new functions more intuitive and reduce the
+redundancy of having the function more than once (Parnas 4).
 
+One last oversight that must be addressed is the fact that the program is catered
+exclusively towards latex files. By doing this, the components in this project do
+not have a good degree of applicability, since there are many other forms of text file
+that people could be using to store their exams as (Gamma et. all, 5). 
+
+Generate seed using time.
+
+----------
 Design v2:
+----------
 
-1: PatternMatcher.Java
-This module is used by FindAnswers.java and FindProblems.java and its
-only secret is the list chars. Its purpose is to tells whether the sequence 
-in array chars matches those of c. Its only export is the match function.
+1: PatternMatcher.java
+This module is used by FindAnswers.java and FindProblems.java and its purpose 
+is to tell whether the sequence in array chars matches those of c. The reason I
+made this function its own component was that it was already present in FindAnswers
+and FindProblems but written sligtly differently. By doing this, I feel that I have
+streamlined it and made it much easier to understand, as while as cutting back on the
+clutter in the two parent components. Its only export is the match function and its
+only secret is the chars array.
 
-2: Randomizer.Java
+2: Randomizer.java
 This module is used by RandomizeAnswers.java and RandomizeProbelms.java.
 Its main purpose is to reduce the amount of times that randomize happens since
 before I changed it it happened in both java files. Also it cuts back on the amount
 of calls to the rand object which saves on space and time. Its main export is the
 randomize function.
 
-
+3: DebugRandex.java
+This moduel is intended to be used by Randex.java and its main purpose is to
+print out a 1 or 2 dimensial array of characters as a way to debug the output as
+Randex.java goes through its execute function. The main reason I did this was to
+clean up the Randex componet as I felt that it was quite dense and figured the
+debugging functionality could be moved elsewhere. By doing this, I believe it is
+easier to understand how the debugging works and makes Randex more digestible.
+There are no secrets for this component and its exports are both of the print
+functions, one for 1D arrays and one for 2D arrays.
+-----------------------
 Anticipation of Change:
+-----------------------
 
-1:
+1: Making the program work with non-latex text files
 
-2:
+In order to make the program function with text files that aren't of the latex
+type, we would need to create 
+
+2: 
 
 3:

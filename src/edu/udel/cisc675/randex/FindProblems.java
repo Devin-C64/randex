@@ -35,7 +35,6 @@ public class FindProblems {
 	this.chars = chars;
     }
 
-	PatternMatcher patternMatcher = new PatternMatcher(chars);
 
     /* Constructs probStarts and probStops. */
     public void execute() {
@@ -43,6 +42,7 @@ public class FindProblems {
 	    stopList = new ArrayList<>();
 	int n = chars.length;
 	boolean inProblem = false; // is i currently inside a problem?
+	PatternMatcher patternMatcher = new PatternMatcher(chars);
 	for (int i=0; i<n; i++) {
 	    if (patternMatcher.match(i, beginProblem)) {
 		if (inProblem)
