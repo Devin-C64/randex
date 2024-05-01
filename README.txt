@@ -174,7 +174,9 @@ Anticipation of Change
 
 For both versions of the code (v1 and v2), in order to make the program function with text 
 files that aren't of the latex type, we would need to create new classes based on Input.java
-that can handle different forms of documents. 
+that can handle different forms of documents. All of these classes could be extensions of a base
+input component that holds all of the variables and methods that are shared between all of the
+new classes.
 
 2: Combine RandomizeAnswers and RandomizeProblems / combine FindAnswers and combine FindProblems
 
@@ -189,6 +191,8 @@ some of the functionality of these components and made them into their own class
 
 3: Abstract constructor for all components used in Randex.java
 
-For the original version of the code (v1),
-
-For my new version of the code (v2)
+For both versions of the code (v1 and v2) this could be accomplished by creating a new component that
+serves as an abstract constructor. This would create a new output object using the same component
+creation pipeline that is featured in Randex.java. As a result, the execute function in Randex would
+be much more readable and easier to understand, plus the user would have a shortcut for creating a new
+complete set of all objects based on the file passed into Randex.
